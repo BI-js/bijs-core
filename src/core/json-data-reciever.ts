@@ -1,21 +1,14 @@
 import type { DataReciever } from "@/types/data-reciever";
 
-export class JSONDataReciever<SchemaType>
-	implements DataReciever<SchemaType>
-{
+export class JSONDataReciever<SchemaType> implements DataReciever<SchemaType> {
 	public type = "json";
-	public content: Array<SchemaType> = [];
 
-	recieve(content: string): boolean {
-		try {
-			const preContent = JSON.parse(content) as Array<SchemaType>;
+	constructor(protected raw: string) {}
 
-			this.content = preContent;
-
-			return true;
-		} catch (_) {
-			return false;
-		}
+	protected process(instructions: unknown): boolean {
+    // Stream -> Chunks: filter;
+    // string
+		return true;
 	}
 }
 
@@ -41,8 +34,6 @@ const data: Array<Aluno> = [
 
 const serializedData = JSON.stringify(data);
 
-const json = new JSONDataReciever<typeof data[0]>();
+new JSONDataReciever<(typeof data)[0]>(serializedData);
 
-json.recieve(serializedData);
 
-console.log(json.content[0])

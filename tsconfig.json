@@ -4,7 +4,7 @@
     "module": "esnext",
     "baseUrl": "./",
     "paths": {
-      "@/*": ["./src/*"],
+      "@/*": ["./src/*"]
     },
     "allowJs": false,
     "incremental": true,
@@ -13,6 +13,7 @@
     "noEmit": false,
     "outDir": "./dist",
     "moduleResolution": "node",
-    "declaration": true
+    "declaration": true,
+    "allowSyntheticDefaultImports": true
   }
 }

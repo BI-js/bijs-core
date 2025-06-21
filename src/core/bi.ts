@@ -17,6 +17,7 @@ export class BI<SchemaType extends object> {
 	order(by: keyof SchemaType): void {}
 
 	serialize(): string {
+    // O método Serialize vai processar o Reciever, com base nas operações de filter, sort e order.
 		return JSON.stringify({});
 	}
 }
