@@ -1,13 +1,22 @@
 import type { DataReciever } from "@/types/data-reciever";
 
 export class BI<SchemaType extends object> {
-  constructor(private reciever: DataReciever<SchemaType>) {}
+	private content: Array<SchemaType>;
 
-  filter(by: keyof SchemaType, ) {}
+	constructor(private reciever: DataReciever<SchemaType>) {
+		this.content = [...reciever.content];
+	}
 
-  sort() {}
+	filter<TargetColumn extends keyof SchemaType>(
+		by: TargetColumn,
+		when: (target: SchemaType[TargetColumn]) => boolean,
+	): void {}
 
-  serialize(): string {
-    return JSON.stringify({});
-  }
+	sort(by: keyof SchemaType): void {}
+
+	order(by: keyof SchemaType): void {}
+
+	serialize(): string {
+		return JSON.stringify({});
+	}
 }
